@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# App specific
+assets/
+setup.log
+config.json.bak
