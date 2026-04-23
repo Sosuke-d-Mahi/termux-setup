@@ -9,7 +9,6 @@ class TermuxInstaller:
         self.config_path = "config.json"
 
     def run(self, cmd, shell=True):
-        """Executes shell commands and handles errors."""
         try:
             print(f"  > Executing: {cmd}")
             subprocess.run(cmd, shell=shell, check=True)
@@ -30,10 +29,8 @@ class TermuxInstaller:
 
     def setup_zsh(self):
         print("🎨 Setting up Zsh & Oh My Zsh...")
-        # Install Zsh if not present
         self.run("pkg install zsh -y")
         
-        # Install Oh My Zsh
         omz_dir = os.path.join(self.home, ".oh-my-zsh")
         if not os.path.exists(omz_dir):
             print("   Installing Oh My Zsh...")
@@ -41,7 +38,6 @@ class TermuxInstaller:
         else:
             print("   Oh My Zsh is already installed.")
 
-        # Set Zsh as default shell
         print("   Changing default shell to Zsh...")
         self.run("chsh -s zsh")
 
@@ -50,7 +46,6 @@ class TermuxInstaller:
         p10k_dir = os.path.join(self.home, ".oh-my-zsh/custom/themes/powerlevel10k")
         if not os.path.exists(p10k_dir):
             self.run(f"git clone --depth=1 https://github.com/romkatv/powerlevel10k.git {p10k_dir}")
-            # Update .zshrc to use p10k
             zshrc = os.path.join(self.home, ".zshrc")
             if os.path.exists(zshrc):
                 with open(zshrc, "r") as f:
@@ -66,7 +61,7 @@ class TermuxInstaller:
         bashrc = os.path.join(self.home, ".bashrc")
         zshrc = os.path.join(self.home, ".zshrc")
         
-        alias_str = "\n# Custom Aliases\n"
+        alias_str = "\n"
         for alias, cmd in aliases.items():
             alias_str += f"alias {alias}='{cmd}'\n"
         

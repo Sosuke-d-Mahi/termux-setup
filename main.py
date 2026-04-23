@@ -1,9 +1,9 @@
 import os
 import json
 import sys
+import time
 from installer import TermuxInstaller
 
-# Try to import rich for a beautiful CLI, fallback to standard print
 try:
     from rich.console import Console
     from rich.panel import Panel
@@ -56,7 +56,31 @@ def show_menu():
         print("3. [Custom]  - Load selective config")
         print("4. [Exit]    - Exit")
 
+def play_animation():
+    if not os.path.exists("ascii-animation.txt"):
+        return
+
+    try:
+        with open("ascii-animation.txt", "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        
+        frames = []
+        for i in range(0, len(lines), 100):
+            frames.append("".join(lines[i:i+100]))
+
+        for frame in frames:
+            sys.stdout.write("\033[H") # Move cursor to top-left
+            sys.stdout.write(frame)
+            sys.stdout.flush()
+            time.sleep(0.05)
+        
+        time.sleep(0.5)
+        os.system("clear")
+    except Exception as e:
+        pass
+
 def main():
+    play_animation()
     config = load_config()
     installer = TermuxInstaller()
     
