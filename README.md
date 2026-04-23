@@ -43,6 +43,17 @@ pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.c
 
 ---
 
+## 🚀 Quick Reference (Easy Copy)
+
+| Task | Command |
+| :--- | :--- |
+| **One-Line Install** | `bash setup.sh` |
+| **Run Menu CLI** | `python main.py` |
+| **Basic Setup** | `python main.py --mode basic` |
+| **Full Environment** | `python main.py --mode full` |
+
+---
+
 ## 🔧 Project Structure
 
 | File | Purpose |
