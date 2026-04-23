@@ -1,0 +1,26 @@
+{
+  "packages": [
+    "git",
+    "python",
+    "nodejs",
+    "zsh",
+    "vim",
+    "curl",
+    "wget",
+    "build-essential",
+    "clang",
+    "tree",
+    "htop"
+  ],
+  "extras": {
+    "oh_my_zsh": true,
+    "powerlevel10k": true,
+    "auto_backups": true,
+    "aliases": {
+      "update": "pkg update && pkg upgrade -y",
+      "cls": "clear",
+      "ll": "ls -la",
+      "gs": "git status"
+    }
+  }
+}
